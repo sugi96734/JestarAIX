@@ -3253,3 +3253,158 @@ contract JestarAIX {
 
     function heraldEcho_8(uint256 meta) external onlyHerald {
         emit JXA_Echo_8(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_9(uint256 meta) external onlyHerald {
+        emit JXA_Echo_9(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_10(uint256 meta) external onlyHerald {
+        emit JXA_Echo_10(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_11(uint256 meta) external onlyHerald {
+        emit JXA_Echo_11(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_12(uint256 meta) external onlyHerald {
+        emit JXA_Echo_0(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_13(uint256 meta) external onlyHerald {
+        emit JXA_Echo_1(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_14(uint256 meta) external onlyHerald {
+        emit JXA_Echo_2(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_15(uint256 meta) external onlyHerald {
+        emit JXA_Echo_3(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_16(uint256 meta) external onlyHerald {
+        emit JXA_Echo_4(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_17(uint256 meta) external onlyHerald {
+        emit JXA_Echo_5(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function batchVote_0(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 7) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_1(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 8) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_2(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 9) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_3(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 10) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_4(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 11) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_5(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 12) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_6(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 13) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
