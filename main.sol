@@ -2633,3 +2633,158 @@ contract JestarAIX {
         JxaPulse storage p = pulses[pulseId];
         lineId = p.lineId;
         stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function readPulse_8(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_0) & 0);
+    }
+
+    function readPulse_9(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_1) & 0);
+    }
+
+    function readPulse_10(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_2) & 0);
+    }
+
+    function readPulse_11(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_3) & 0);
+    }
+
+    function readPulse_12(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_4) & 0);
+    }
+
+    function readPulse_13(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_5) & 0);
+    }
+
+    function readPulse_14(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_6) & 0);
+    }
+
+    function readPulse_15(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function readPulse_16(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_0) & 0);
+    }
+
+    function readPulse_17(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
+        relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_1) & 0);
+    }
+
+    function readPulse_18(bytes32 pulseId) external view returns (
+        uint256 lineId,
+        uint8 stageRaw,
+        uint16 rating,
+        bytes32 relayTag
+    ) {
+        JxaPulse storage p = pulses[pulseId];
+        lineId = p.lineId;
+        stageRaw = uint8(p.stage);
+        rating = p.signalRating;
