@@ -2013,3 +2013,158 @@ contract JestarAIX {
         JxaBeacon storage b = beacons[beaconId];
         lineId = b.lineId;
         scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_0));
+    }
+
+    function readBeacon_81(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_1));
+    }
+
+    function readLine_0(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_0) & 0);
+    }
+
+    function readLine_1(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_1) & 0);
+    }
+
+    function readLine_2(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_2) & 0);
+    }
+
+    function readLine_3(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_3) & 0);
+    }
+
+    function readLine_4(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_4) & 0);
+    }
+
+    function readLine_5(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_5) & 0);
+    }
+
+    function readLine_6(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_6) & 0);
+    }
+
+    function readLine_7(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
+        JxaLine storage ln = lines[lineId];
+        beacons = ln.beaconCount;
+        pulses = ln.pulseCount;
+        mass = ln.massSum;
+        band = ln.signalBand;
+        nonce = ln.lineNonce;
+        mass = mass ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function readLine_8(uint256 lineId) external view returns (
+        uint32 beacons,
+        uint32 pulses,
+        uint256 mass,
+        uint8 band,
+        bytes32 nonce
+    ) {
