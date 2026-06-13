@@ -308,3 +308,158 @@ contract JestarAIX {
         if (amt > address(this).balance - escrowWei) revert JXA_CapHit();
         _pushNative(to, amt);
     }
+
+    function fundRelay() external payable whenLive {
+        if (msg.value == 0) revert JXA_ZeroWei();
+        emit JXA_RelayFunded(msg.sender, msg.value, block.number);
+        emit JXA_Echo_0(echoSerial, msg.sender, msg.value, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function postBeacon(
+        bytes32 beaconId,
+        uint256 lineId,
+        bytes32 intentSeal,
+        uint8 signalBand
+    ) external payable nonReentrant whenLive onlyActiveScout {
+        if (beaconId == bytes32(0)) revert JXA_HashEmpty();
+        if (beaconIdUsed[beaconId]) revert JXA_BeaconTaken();
+        if (msg.value < JXA_BEACON_FEE) revert JXA_BondThin();
+        if (signalBand == 0 || signalBand > JXA_BAND_CAP) revert JXA_BandOff();
+        JxaLine storage ln = lines[lineId];
+        if (ln.status != JxaLineStatus.Live) revert JXA_LineMuted();
+        if (ln.beaconCount >= JXA_MAX_BEACONS) revert JXA_CapHit();
+        beaconIdUsed[beaconId] = true;
+        beacons[beaconId] = JxaBeacon({
+            lineId: lineId,
+            scout: msg.sender,
+            intentSeal: intentSeal,
+            signalBand: signalBand,
+            upVotes: 0,
+            downVotes: 0,
+            lockedWei: msg.value,
+            postedAt: uint64(block.timestamp),
+            open: true
+        });
+        unchecked {
+            ln.beaconCount += 1;
+            ln.massSum = JxaScale.safeAdd(
+                ln.massSum, uint256(signalBand) * 73, JXA_MASS_CAP
+            );
+            scoutBenches[msg.sender].beaconCount += 1;
+        }
+        scoutMass[activeEpoch][msg.sender] += uint256(signalBand) * 19;
+        escrowWei += msg.value;
+        _beaconsByScout[msg.sender].push(beaconId);
+        _beaconRoll.push(beaconId);
+        emit JXA_BeaconPosted(beaconId, lineId, msg.sender, signalBand, msg.value);
+    }
+
+    function voteBeacon(bytes32 beaconId, bool up) external whenLive {
+        JxaBeacon storage b = beacons[beaconId];
+        if (!b.open) revert JXA_BeaconGone();
+        if (b.scout == msg.sender) revert JXA_VoteSelf();
+        if (voteCast[beaconId][msg.sender]) revert JXA_VoteSpent();
+        voteCast[beaconId][msg.sender] = true;
+        if (up) unchecked { b.upVotes += 1; }
+        else unchecked { b.downVotes += 1; }
+        emit JXA_BeaconVoted(beaconId, msg.sender, up, activeEpoch);
+    }
+
+    function boostBeacon(bytes32 beaconId) external payable nonReentrant whenLive {
+        if (msg.value == 0) revert JXA_ZeroWei();
+        JxaBeacon storage b = beacons[beaconId];
+        if (!b.open) revert JXA_BeaconGone();
+        b.lockedWei += msg.value;
+        escrowWei += msg.value;
+        emit JXA_BeaconBoosted(beaconId, msg.sender, msg.value, activeEpoch);
+    }
+
+    function joinScout(bytes32 tag) external payable nonReentrant whenLive {
+        if (msg.value < JXA_HERALD_BOND) revert JXA_BondThin();
+        if (scoutBenches[msg.sender].active) revert JXA_ScoutKnown();
+        scoutBenches[msg.sender] = JxaScoutBench({
+            active: true,
+            tag: tag,
+            joinedAt: uint64(block.timestamp),
+            beaconCount: 0
+        });
+        escrowWei += msg.value;
+        emit JXA_ScoutJoined(msg.sender, tag, msg.value);
+    }
+
+    function queuePulse(bytes32 pulseId, uint256 lineId, bytes32 relayTag)
+        external
+        payable
+        nonReentrant
+        whenLive
+        onlyActiveScout
+    {
+        if (pulseId == bytes32(0)) revert JXA_HashEmpty();
+        if (pulseIdUsed[pulseId]) revert JXA_PulseLive();
+        if (msg.value < JXA_BEACON_FEE) revert JXA_BondThin();
+        if (openPulses >= JXA_OPEN_PULSE_CAP) revert JXA_CapHit();
+        JxaLine storage ln = lines[lineId];
+        if (ln.status != JxaLineStatus.Live) revert JXA_LineMuted();
+        pulseIdUsed[pulseId] = true;
+        pulses[pulseId] = JxaPulse({
+            lineId: lineId,
+            proposer: msg.sender,
+            relayTag: relayTag,
+            stage: JxaPulseStage.Waiting,
+            outcomeHash: bytes32(0),
+            signalRating: 0,
+            queuedAt: uint64(block.timestamp)
+        });
+        unchecked {
+            openPulses += 1;
+            ln.pulseCount += 1;
+        }
+        escrowWei += msg.value;
+        emit JXA_PulseQueued(pulseId, lineId, relayTag, block.timestamp);
+    }
+
+    function firePulse(bytes32 pulseId, bytes32 outcomeHash, uint16 signalRating) external onlyHerald {
+        JxaPulse storage p = pulses[pulseId];
+        if (p.stage != JxaPulseStage.Waiting && p.stage != JxaPulseStage.Active) revert JXA_PulseDone();
+        if (signalRating < JXA_SIGNAL_FLOOR) revert JXA_SignalLow();
+        if (signalRating > JXA_SIGNAL_CEIL) revert JXA_SignalHigh();
+        p.stage = JxaPulseStage.Finalized;
+        p.outcomeHash = outcomeHash;
+        p.signalRating = signalRating;
+        if (openPulses > 0) unchecked { openPulses -= 1; }
+        emit JXA_PulseFired(pulseId, outcomeHash, signalRating, activeEpoch);
+    }
+
+    function emitWave(
+        bytes32 waveId,
+        uint256 lineId,
+        bytes32 waveTag,
+        bytes32 prismHash,
+        uint16 wavelength
+    ) external onlyHerald whenLive {
+        if (waveIdUsed[waveId]) revert JXA_HeraldStale();
+        if (wavelength < JXA_WAVE_FLOOR) revert JXA_SignalLow();
+        if (wavelength > JXA_WAVE_CEIL) revert JXA_SignalHigh();
+        JxaLine storage ln = lines[lineId];
+        if (ln.status != JxaLineStatus.Live) revert JXA_LineMuted();
+        waveIdUsed[waveId] = true;
+        waves[waveId] = JxaWave({
+            lineId: lineId,
+            waveTag: waveTag,
+            prismHash: prismHash,
+            wavelength: wavelength,
+            stampedAt: uint64(block.timestamp)
+        });
+        emit JXA_WaveEmitted(waveId, lineId, wavelength, block.timestamp);
+    }
+
+    function redeemBeacon(bytes32 beaconId, address payable to) external nonReentrant whenLive {
+        JxaBeacon storage b = beacons[beaconId];
+        if (!b.open) revert JXA_BeaconGone();
+        if (b.scout != msg.sender) revert JXA_SelfRoute();
+        if (to == address(0)) revert JXA_ZeroAddr();
+        uint256 amt = b.lockedWei;
+        if (amt == 0) revert JXA_ZeroWei();
+        b.open = false;
+        b.lockedWei = 0;
