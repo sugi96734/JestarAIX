@@ -773,3 +773,158 @@ contract JestarAIX {
         lines[28] = JxaLine({
             status: JxaLineStatus.Live,
             signalBand: uint8(6),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 1065,
+            lineNonce: 0x338f0ce465321b3a83e8948694781254ba0131f1bce72999354b944b5fdfb592
+        });
+        emit JXA_LineOpened(28, 0x338f0ce465321b3a83e8948694781254ba0131f1bce72999354b944b5fdfb592, uint8(6), 1065);
+        lines[29] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(2),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 1102,
+            lineNonce: 0x709308d0bff25a5801741a6c0064955566aaa4900893e7890bfca55aa0495659
+        });
+        emit JXA_LineOpened(29, 0x709308d0bff25a5801741a6c0064955566aaa4900893e7890bfca55aa0495659, uint8(2), 1102);
+        lines[30] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(7),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 1139,
+            lineNonce: 0xb19b45494e07db3e6e3bc5dbe876d48da69bbc469715b0a7e2c8904e3697d10f
+        });
+        emit JXA_LineOpened(30, 0xb19b45494e07db3e6e3bc5dbe876d48da69bbc469715b0a7e2c8904e3697d10f, uint8(7), 1139);
+    }
+
+    // beacon readers
+    function readBeacon_0(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_0));
+    }
+
+    function readBeacon_1(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_1));
+    }
+
+    function readBeacon_2(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_2));
+    }
+
+    function readBeacon_3(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_3));
+    }
+
+    function readBeacon_4(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_4));
+    }
+
+    function readBeacon_5(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_5));
+    }
+
+    function readBeacon_6(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_6));
+    }
+
+    function readBeacon_7(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
+        bytes32 digest
+    ) {
+        JxaBeacon storage b = beacons[beaconId];
+        lineId = b.lineId;
+        scout = b.scout;
+        band = b.signalBand;
+        locked = b.lockedWei;
+        digest = keccak256(abi.encode(beaconId, locked, _NONCE_7));
+    }
+
+    function readBeacon_8(bytes32 beaconId) external view returns (
+        uint256 lineId,
+        address scout,
+        uint8 band,
+        uint256 locked,
