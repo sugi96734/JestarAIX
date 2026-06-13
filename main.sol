@@ -153,3 +153,158 @@ contract JestarAIX {
 
     uint256 public constant JXA_BAND_CAP = 5;
     uint256 public constant JXA_BEACON_FEE = 0.003 ether;
+    uint256 public constant JXA_HERALD_BOND = 0.03 ether;
+    uint256 public constant JXA_MAX_BEACONS = 187;
+    uint256 public constant JXA_OPEN_PULSE_CAP = 66;
+    uint256 public constant JXA_WAVE_FLOOR = 464;
+    uint256 public constant JXA_WAVE_CEIL = 7294;
+    uint256 public constant JXA_EPOCH_BLOCKS = 396;
+    uint256 public constant JXA_MASS_CAP = 12634;
+    uint256 public constant JXA_SIGNAL_FLOOR = 296;
+    uint256 public constant JXA_SIGNAL_CEIL = 7160;
+    uint256 public constant JXA_LINE_COUNT = 30;
+
+    bytes32 private constant _NONCE_0 = 0x8f0afe56e239b0acbc05e31ad109462d8beca393528d917e7adbf6a0ad4e3852;
+    bytes32 private constant _NONCE_1 = 0xf54b57c3d0eecc10a01ab73ee8f4c07d44108b13644d14e7276c72f76c870fb9;
+    bytes32 private constant _NONCE_2 = 0x75b3341df3aeebcac3acb2a9a624542c169e36586bdc13e86743691a1e5bf077;
+    bytes32 private constant _NONCE_3 = 0x68bbd8229a4e1029f3ca50cc7df16e2d9223eec2ad925905ad1969944a84c0bb;
+    bytes32 private constant _NONCE_4 = 0x338f0ce465321b3a83e8948694781254ba0131f1bce72999354b944b5fdfb592;
+    bytes32 private constant _NONCE_5 = 0x709308d0bff25a5801741a6c0064955566aaa4900893e7890bfca55aa0495659;
+    bytes32 private constant _NONCE_6 = 0xb19b45494e07db3e6e3bc5dbe876d48da69bbc469715b0a7e2c8904e3697d10f;
+    bytes32 private constant _NONCE_7 = 0x63568a8347be43a3ef61355387a07b9fd71226bda24b4bd8747097e988bcdf1d;
+    bytes32 private constant JXA_DOMAIN = keccak256("JestarAIX.spectralRelay");
+
+    address public director;
+    address public immutable ADDRESS_A;
+    address public immutable ADDRESS_B;
+    address public immutable ADDRESS_C;
+
+    address public pendingDirector;
+    address public herald;
+    bool public gridFrozen;
+    uint256 public activeEpoch;
+    uint256 public echoSerial;
+    uint256 public openPulses;
+    uint256 public escrowWei;
+    uint256 public bornBlock;
+    uint256 public lineSerial;
+
+    mapping(uint256 => JxaLine) public lines;
+    mapping(bytes32 => JxaBeacon) public beacons;
+    mapping(bytes32 => JxaPulse) public pulses;
+    mapping(bytes32 => JxaWave) public waves;
+    mapping(uint256 => JxaEpochRing) public epochRings;
+    mapping(uint256 => mapping(address => uint256)) public scoutMass;
+    mapping(bytes32 => mapping(address => bool)) public voteCast;
+    mapping(bytes32 => bool) public beaconIdUsed;
+    mapping(bytes32 => bool) public pulseIdUsed;
+    mapping(bytes32 => bool) public waveIdUsed;
+    mapping(address => JxaScoutBench) public scoutBenches;
+    mapping(address => bytes32[]) private _beaconsByScout;
+    bytes32[] private _beaconRoll;
+    uint256 private _guard;
+
+    modifier nonReentrant() {
+        if (_guard == 2) revert JXA_Reentered();
+        _guard = 2;
+        _;
+        _guard = 1;
+    }
+
+    modifier onlyDirector() {
+        if (msg.sender != director) revert JXA_NotDirector();
+        _;
+    }
+
+    modifier onlyHerald() {
+        if (msg.sender != herald) revert JXA_NotHerald();
+        _;
+    }
+
+    modifier whenLive() {
+        if (gridFrozen) revert JXA_GridFrozen();
+        _;
+    }
+
+    modifier onlyActiveScout() {
+        if (!scoutBenches[msg.sender].active) revert JXA_NotScout();
+        _;
+    }
+
+    constructor() {
+        director = msg.sender;
+        ADDRESS_A = 0x2C132795c32391fd70901a78A51157E973172d68;
+        ADDRESS_B = 0x762fe07Ec9b52f09C6712ac1c4fFf02e851A04F8;
+        ADDRESS_C = 0x089a29601FDcf1056a6Ff9CC0473B6fDF9d5923B;
+        herald = ADDRESS_A;
+        _guard = 1;
+        bornBlock = block.number;
+        activeEpoch = 1;
+        lineSerial = JXA_LINE_COUNT;
+        _beginEpoch(1);
+        _bootLines();
+    }
+
+    function proposeDirector(address next_) external onlyDirector {
+        if (next_ == address(0)) revert JXA_ZeroAddr();
+        if (pendingDirector != address(0)) revert JXA_PendingSet();
+        pendingDirector = next_;
+        emit JXA_DirectorProposed(next_, block.number);
+    }
+
+    function acceptDirector() external {
+        if (msg.sender != pendingDirector) revert JXA_NoPending();
+        director = pendingDirector;
+        pendingDirector = address(0);
+        emit JXA_DirectorAccepted(director, block.number);
+    }
+
+    function setHerald(address next_) external onlyDirector {
+        if (next_ == address(0)) revert JXA_ZeroAddr();
+        herald = next_;
+        emit JXA_HeraldSet(next_, block.number);
+    }
+
+    function setGridFrozen(bool on) external onlyDirector {
+        gridFrozen = on;
+        emit JXA_GridFrozenSet(on, msg.sender, block.number);
+    }
+
+    function turnEpoch() external onlyDirector whenLive {
+        uint256 n = activeEpoch + 1;
+        if (n > 44) revert JXA_EpochOff();
+        activeEpoch = n;
+        _beginEpoch(n);
+        emit JXA_EpochTurned(n, uint64(block.timestamp), _epochBeaconMass(), openPulses);
+    }
+
+    function muteLine(uint256 lineId) external onlyHerald {
+        JxaLine storage ln = lines[lineId];
+        if (ln.status == JxaLineStatus.Vacant) revert JXA_LineDead();
+        ln.status = JxaLineStatus.Muted;
+    }
+
+    function enrollScout(address scout, bytes32 tag) external onlyDirector {
+        if (scout == address(0)) revert JXA_ZeroAddr();
+        if (scoutBenches[scout].active) revert JXA_ScoutKnown();
+        scoutBenches[scout] = JxaScoutBench({
+            active: true,
+            tag: tag,
+            joinedAt: uint64(block.timestamp),
+            beaconCount: 0
+        });
+        emit JXA_ScoutJoined(scout, tag, 0);
+    }
+
+    function dropScout(address scout) external onlyDirector {
+        if (!scoutBenches[scout].active) revert JXA_NotScout();
+        scoutBenches[scout].active = false;
+        emit JXA_ScoutLeft(scout, block.number);
+    }
+
+    function skimExcess(uint256 amt, address payable to) external onlyDirector nonReentrant {
+        if (to == address(0)) revert JXA_ZeroAddr();
+        if (amt == 0 || amt > address(this).balance) revert JXA_ZeroWei();
+        if (amt > address(this).balance - escrowWei) revert JXA_CapHit();
+        _pushNative(to, amt);
+    }
