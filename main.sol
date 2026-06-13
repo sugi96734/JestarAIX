@@ -463,3 +463,158 @@ contract JestarAIX {
         if (amt == 0) revert JXA_ZeroWei();
         b.open = false;
         b.lockedWei = 0;
+        escrowWei -= amt;
+        _pushNative(to, amt);
+    }
+
+    function _pushNative(address to, uint256 amt) internal {
+        (bool ok, ) = payable(to).call{value: amt}("");
+        if (!ok) revert JXA_SendFail();
+    }
+
+    function _beginEpoch(uint256 epochId) internal {
+        JxaEpochRing storage ring = epochRings[epochId];
+        ring.openedAt = uint64(block.timestamp);
+        ring.beaconMass = _epochBeaconMass();
+        ring.pulseMass = openPulses;
+        ring.ringDigest = _ringDigest(epochId, ring.beaconMass, ring.pulseMass);
+    }
+
+    function _ringDigest(uint256 epochId, uint256 bm, uint256 pm) internal view returns (bytes32) {
+        bytes32 hA = keccak256(abi.encode(JXA_DOMAIN, epochId, bm, _NONCE_0, ADDRESS_A));
+        bytes32 hB = keccak256(abi.encode(pm, _NONCE_1, ADDRESS_B, ADDRESS_C, bornBlock));
+        return keccak256(abi.encodePacked(hA, hB, JXA_EPOCH_BLOCKS));
+    }
+
+    function beaconDigest(bytes32 beaconId) public view returns (bytes32) {
+        JxaBeacon storage b = beacons[beaconId];
+        bytes32 hA = keccak256(abi.encode(beaconId, b.lineId, b.scout, _NONCE_2));
+        bytes32 hB = keccak256(abi.encode(b.lockedWei, b.intentSeal, activeEpoch, _NONCE_3));
+        return keccak256(abi.encodePacked(hA, hB));
+    }
+
+    function _epochBeaconMass() internal view returns (uint256 mass) {
+        for (uint256 i = 1; i <= JXA_LINE_COUNT; ++i) {
+            mass += lines[i].massSum;
+        }
+    }
+
+    function _bootLines() internal {
+        lines[1] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(3),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 66,
+            lineNonce: 0xf54b57c3d0eecc10a01ab73ee8f4c07d44108b13644d14e7276c72f76c870fb9
+        });
+        emit JXA_LineOpened(1, 0xf54b57c3d0eecc10a01ab73ee8f4c07d44108b13644d14e7276c72f76c870fb9, uint8(3), 66);
+        lines[2] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(5),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 103,
+            lineNonce: 0x75b3341df3aeebcac3acb2a9a624542c169e36586bdc13e86743691a1e5bf077
+        });
+        emit JXA_LineOpened(2, 0x75b3341df3aeebcac3acb2a9a624542c169e36586bdc13e86743691a1e5bf077, uint8(5), 103);
+        lines[3] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(4),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 140,
+            lineNonce: 0x68bbd8229a4e1029f3ca50cc7df16e2d9223eec2ad925905ad1969944a84c0bb
+        });
+        emit JXA_LineOpened(3, 0x68bbd8229a4e1029f3ca50cc7df16e2d9223eec2ad925905ad1969944a84c0bb, uint8(4), 140);
+        lines[4] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(6),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 177,
+            lineNonce: 0x338f0ce465321b3a83e8948694781254ba0131f1bce72999354b944b5fdfb592
+        });
+        emit JXA_LineOpened(4, 0x338f0ce465321b3a83e8948694781254ba0131f1bce72999354b944b5fdfb592, uint8(6), 177);
+        lines[5] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(2),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 214,
+            lineNonce: 0x709308d0bff25a5801741a6c0064955566aaa4900893e7890bfca55aa0495659
+        });
+        emit JXA_LineOpened(5, 0x709308d0bff25a5801741a6c0064955566aaa4900893e7890bfca55aa0495659, uint8(2), 214);
+        lines[6] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(7),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 251,
+            lineNonce: 0xb19b45494e07db3e6e3bc5dbe876d48da69bbc469715b0a7e2c8904e3697d10f
+        });
+        emit JXA_LineOpened(6, 0xb19b45494e07db3e6e3bc5dbe876d48da69bbc469715b0a7e2c8904e3697d10f, uint8(7), 251);
+        lines[7] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(4),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 288,
+            lineNonce: 0x63568a8347be43a3ef61355387a07b9fd71226bda24b4bd8747097e988bcdf1d
+        });
+        emit JXA_LineOpened(7, 0x63568a8347be43a3ef61355387a07b9fd71226bda24b4bd8747097e988bcdf1d, uint8(4), 288);
+        lines[8] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(5),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 325,
+            lineNonce: 0x8f0afe56e239b0acbc05e31ad109462d8beca393528d917e7adbf6a0ad4e3852
+        });
+        emit JXA_LineOpened(8, 0x8f0afe56e239b0acbc05e31ad109462d8beca393528d917e7adbf6a0ad4e3852, uint8(5), 325);
+        lines[9] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(3),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 362,
+            lineNonce: 0xf54b57c3d0eecc10a01ab73ee8f4c07d44108b13644d14e7276c72f76c870fb9
+        });
+        emit JXA_LineOpened(9, 0xf54b57c3d0eecc10a01ab73ee8f4c07d44108b13644d14e7276c72f76c870fb9, uint8(3), 362);
+        lines[10] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(5),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 399,
+            lineNonce: 0x75b3341df3aeebcac3acb2a9a624542c169e36586bdc13e86743691a1e5bf077
+        });
+        emit JXA_LineOpened(10, 0x75b3341df3aeebcac3acb2a9a624542c169e36586bdc13e86743691a1e5bf077, uint8(5), 399);
+        lines[11] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(4),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 436,
+            lineNonce: 0x68bbd8229a4e1029f3ca50cc7df16e2d9223eec2ad925905ad1969944a84c0bb
+        });
+        emit JXA_LineOpened(11, 0x68bbd8229a4e1029f3ca50cc7df16e2d9223eec2ad925905ad1969944a84c0bb, uint8(4), 436);
+        lines[12] = JxaLine({
+            status: JxaLineStatus.Live,
+            signalBand: uint8(6),
+            openedAt: uint64(block.timestamp),
+            beaconCount: 0,
+            pulseCount: 0,
+            massSum: 473,
+            lineNonce: 0x338f0ce465321b3a83e8948694781254ba0131f1bce72999354b944b5fdfb592
