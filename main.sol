@@ -2943,3 +2943,158 @@ contract JestarAIX {
         stageRaw = uint8(p.stage);
         rating = p.signalRating;
         relayTag = p.relayTag;
+        lineId = lineId ^ (uint256(_NONCE_5) & 0);
+    }
+
+    function readWave_0(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_3) & 0);
+    }
+
+    function readWave_1(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_4) & 0);
+    }
+
+    function readWave_2(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_5) & 0);
+    }
+
+    function readWave_3(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_6) & 0);
+    }
+
+    function readWave_4(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function readWave_5(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_0) & 0);
+    }
+
+    function readWave_6(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_1) & 0);
+    }
+
+    function readWave_7(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_2) & 0);
+    }
+
+    function readWave_8(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_3) & 0);
+    }
+
+    function readWave_9(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_4) & 0);
+    }
+
+    function readWave_10(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_5) & 0);
