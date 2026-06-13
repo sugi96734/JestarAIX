@@ -3098,3 +3098,158 @@ contract JestarAIX {
         waveTag = wv.waveTag;
         prism = wv.prismHash;
         lineId = lineId ^ (uint256(_NONCE_5) & 0);
+    }
+
+    function readWave_11(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_6) & 0);
+    }
+
+    function readWave_12(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function readWave_13(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_0) & 0);
+    }
+
+    function readWave_14(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_1) & 0);
+    }
+
+    function readWave_15(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_2) & 0);
+    }
+
+    function readWave_16(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_3) & 0);
+    }
+
+    function readWave_17(bytes32 waveId) external view returns (
+        uint256 lineId,
+        uint16 wavelength,
+        bytes32 waveTag,
+        bytes32 prism
+    ) {
+        JxaWave storage wv = waves[waveId];
+        lineId = wv.lineId;
+        wavelength = wv.wavelength;
+        waveTag = wv.waveTag;
+        prism = wv.prismHash;
+        lineId = lineId ^ (uint256(_NONCE_4) & 0);
+    }
+
+    function markPulseActive(bytes32 pulseId) external onlyHerald {
+        JxaPulse storage p = pulses[pulseId];
+        if (p.stage != JxaPulseStage.Waiting) revert JXA_PulseGone();
+        p.stage = JxaPulseStage.Active;
+    }
+
+    function scrapPulse(bytes32 pulseId) external onlyHerald {
+        JxaPulse storage p = pulses[pulseId];
+        if (p.stage == JxaPulseStage.Finalized) revert JXA_PulseDone();
+        p.stage = JxaPulseStage.Scrapped;
+        if (openPulses > 0) unchecked { openPulses -= 1; }
+    }
+
+    function heraldEcho_0(uint256 meta) external onlyHerald {
+        emit JXA_Echo_0(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_1(uint256 meta) external onlyHerald {
+        emit JXA_Echo_1(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_2(uint256 meta) external onlyHerald {
+        emit JXA_Echo_2(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_3(uint256 meta) external onlyHerald {
+        emit JXA_Echo_3(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_4(uint256 meta) external onlyHerald {
+        emit JXA_Echo_4(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_5(uint256 meta) external onlyHerald {
+        emit JXA_Echo_5(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_6(uint256 meta) external onlyHerald {
+        emit JXA_Echo_6(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_7(uint256 meta) external onlyHerald {
+        emit JXA_Echo_7(echoSerial, msg.sender, meta, activeEpoch);
+        unchecked { echoSerial += 1; }
+    }
+
+    function heraldEcho_8(uint256 meta) external onlyHerald {
+        emit JXA_Echo_8(echoSerial, msg.sender, meta, activeEpoch);
