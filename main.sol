@@ -3408,3 +3408,158 @@ contract JestarAIX {
             if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
             voteCast[bid][msg.sender] = true;
             if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_7(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 14) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_8(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 15) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_9(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 16) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_10(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 17) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_11(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 18) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function batchVote_12(bytes32[] calldata ids, bool[] calldata ups) external whenLive {
+        if (ids.length != ups.length) revert JXA_SizeMismatch();
+        if (ids.length > 19) revert JXA_ArrayWide();
+        for (uint256 i; i < ids.length; ++i) {
+            bytes32 bid = ids[i];
+            JxaBeacon storage b = beacons[bid];
+            if (!b.open) revert JXA_BeaconGone();
+            if (b.scout == msg.sender) revert JXA_VoteSelf();
+            if (voteCast[bid][msg.sender]) revert JXA_VoteSpent();
+            voteCast[bid][msg.sender] = true;
+            if (ups[i]) unchecked { b.upVotes += 1; }
+            else unchecked { b.downVotes += 1; }
+            emit JXA_BeaconVoted(bid, msg.sender, ups[i], activeEpoch);
+        }
+    }
+
+    function lineNonce_1() external view returns (bytes32) {
+        return lines[1].lineNonce;
+    }
+
+    function lineNonce_2() external view returns (bytes32) {
+        return lines[2].lineNonce;
+    }
+
+    function lineNonce_3() external view returns (bytes32) {
+        return lines[3].lineNonce;
+    }
+
+    function lineNonce_4() external view returns (bytes32) {
+        return lines[4].lineNonce;
+    }
+
+    function lineNonce_5() external view returns (bytes32) {
+        return lines[5].lineNonce;
+    }
+
+    function lineNonce_6() external view returns (bytes32) {
+        return lines[6].lineNonce;
+    }
+
+    function lineNonce_7() external view returns (bytes32) {
+        return lines[7].lineNonce;
+    }
+
+    function lineNonce_8() external view returns (bytes32) {
+        return lines[8].lineNonce;
+    }
+
+    function lineNonce_9() external view returns (bytes32) {
+        return lines[9].lineNonce;
+    }
+
+    function lineNonce_10() external view returns (bytes32) {
+        return lines[10].lineNonce;
+    }
+
+    function lineNonce_11() external view returns (bytes32) {
+        return lines[11].lineNonce;
+    }
+
+    function lineNonce_12() external view returns (bytes32) {
+        return lines[12].lineNonce;
+    }
+
+    function lineNonce_13() external view returns (bytes32) {
+        return lines[13].lineNonce;
+    }
+
+    function lineNonce_14() external view returns (bytes32) {
+        return lines[14].lineNonce;
