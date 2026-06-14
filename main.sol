@@ -3718,3 +3718,158 @@ contract JestarAIX {
         tag = sb.tag;
         tally = sb.beaconCount;
         mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_6) & 0);
+    }
+
+    function scoutBench_7(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function scoutBench_8(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_0) & 0);
+    }
+
+    function scoutBench_9(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_1) & 0);
+    }
+
+    function scoutBench_10(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_2) & 0);
+    }
+
+    function scoutBench_11(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_3) & 0);
+    }
+
+    function scoutBench_12(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_4) & 0);
+    }
+
+    function scoutBench_13(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_5) & 0);
+    }
+
+    function scoutBench_14(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_6) & 0);
+    }
+
+    function scoutBench_15(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function scoutBench_16(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_0) & 0);
+    }
+
+    function scoutBench_17(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_1) & 0);
+    }
+
+    function scoutBench_18(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
