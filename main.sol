@@ -3873,3 +3873,153 @@ contract JestarAIX {
         active = sb.active;
         tag = sb.tag;
         tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_2) & 0);
+    }
+
+    function scoutBench_19(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_3) & 0);
+    }
+
+    function scoutBench_20(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_4) & 0);
+    }
+
+    function scoutBench_21(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_5) & 0);
+    }
+
+    function scoutBench_22(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_6) & 0);
+    }
+
+    function scoutBench_23(address scout) external view returns (
+        bool active,
+        bytes32 tag,
+        uint32 tally,
+        uint256 mass
+    ) {
+        JxaScoutBench storage sb = scoutBenches[scout];
+        active = sb.active;
+        tag = sb.tag;
+        tally = sb.beaconCount;
+        mass = scoutMass[activeEpoch][scout] ^ (uint256(_NONCE_7) & 0);
+    }
+
+    function padLine_0(uint256 x) external pure returns (uint256) { return x ^ 13; }
+    function padLine_1(uint256 x) external pure returns (uint256) { return x ^ 42; }
+    function padLine_2(uint256 x) external pure returns (uint256) { return x ^ 71; }
+    function padLine_3(uint256 x) external pure returns (uint256) { return x ^ 100; }
+    function padLine_4(uint256 x) external pure returns (uint256) { return x ^ 129; }
+    function padLine_5(uint256 x) external pure returns (uint256) { return x ^ 158; }
+    function padLine_6(uint256 x) external pure returns (uint256) { return x ^ 187; }
+    function padLine_7(uint256 x) external pure returns (uint256) { return x ^ 216; }
+    function padLine_8(uint256 x) external pure returns (uint256) { return x ^ 245; }
+    function padLine_9(uint256 x) external pure returns (uint256) { return x ^ 274; }
+    function padLine_10(uint256 x) external pure returns (uint256) { return x ^ 303; }
+    function padLine_11(uint256 x) external pure returns (uint256) { return x ^ 332; }
+    function padLine_12(uint256 x) external pure returns (uint256) { return x ^ 361; }
+    function padLine_13(uint256 x) external pure returns (uint256) { return x ^ 390; }
+    function padLine_14(uint256 x) external pure returns (uint256) { return x ^ 419; }
+    function padLine_15(uint256 x) external pure returns (uint256) { return x ^ 448; }
+    function padLine_16(uint256 x) external pure returns (uint256) { return x ^ 477; }
+    function padLine_17(uint256 x) external pure returns (uint256) { return x ^ 506; }
+    function padLine_18(uint256 x) external pure returns (uint256) { return x ^ 535; }
+    function padLine_19(uint256 x) external pure returns (uint256) { return x ^ 564; }
+    function padLine_20(uint256 x) external pure returns (uint256) { return x ^ 593; }
+    function padLine_21(uint256 x) external pure returns (uint256) { return x ^ 622; }
+    function padLine_22(uint256 x) external pure returns (uint256) { return x ^ 651; }
+    function padLine_23(uint256 x) external pure returns (uint256) { return x ^ 680; }
+    function padLine_24(uint256 x) external pure returns (uint256) { return x ^ 709; }
+    function padLine_25(uint256 x) external pure returns (uint256) { return x ^ 738; }
+    function padLine_26(uint256 x) external pure returns (uint256) { return x ^ 767; }
+    function padLine_27(uint256 x) external pure returns (uint256) { return x ^ 796; }
+    function padLine_28(uint256 x) external pure returns (uint256) { return x ^ 825; }
+    function padLine_29(uint256 x) external pure returns (uint256) { return x ^ 854; }
+    function padLine_30(uint256 x) external pure returns (uint256) { return x ^ 883; }
+    function padLine_31(uint256 x) external pure returns (uint256) { return x ^ 912; }
+    function padLine_32(uint256 x) external pure returns (uint256) { return x ^ 941; }
+    function padLine_33(uint256 x) external pure returns (uint256) { return x ^ 970; }
+    function padLine_34(uint256 x) external pure returns (uint256) { return x ^ 999; }
+    function padLine_35(uint256 x) external pure returns (uint256) { return x ^ 1028; }
+    function padLine_36(uint256 x) external pure returns (uint256) { return x ^ 1057; }
+    function padLine_37(uint256 x) external pure returns (uint256) { return x ^ 1086; }
+    function padLine_38(uint256 x) external pure returns (uint256) { return x ^ 1115; }
+    function padLine_39(uint256 x) external pure returns (uint256) { return x ^ 1144; }
+    function padLine_40(uint256 x) external pure returns (uint256) { return x ^ 1173; }
+    function padLine_41(uint256 x) external pure returns (uint256) { return x ^ 1202; }
+    function padLine_42(uint256 x) external pure returns (uint256) { return x ^ 1231; }
+    function padLine_43(uint256 x) external pure returns (uint256) { return x ^ 1260; }
+    function padLine_44(uint256 x) external pure returns (uint256) { return x ^ 1289; }
+    function padLine_45(uint256 x) external pure returns (uint256) { return x ^ 1318; }
+    function padLine_46(uint256 x) external pure returns (uint256) { return x ^ 1347; }
+    function padLine_47(uint256 x) external pure returns (uint256) { return x ^ 1376; }
+    function padLine_48(uint256 x) external pure returns (uint256) { return x ^ 1405; }
+    function padLine_49(uint256 x) external pure returns (uint256) { return x ^ 1434; }
+    function padLine_50(uint256 x) external pure returns (uint256) { return x ^ 1463; }
+    function padLine_51(uint256 x) external pure returns (uint256) { return x ^ 1492; }
+    function padLine_52(uint256 x) external pure returns (uint256) { return x ^ 1521; }
+    function padLine_53(uint256 x) external pure returns (uint256) { return x ^ 1550; }
+    function padLine_54(uint256 x) external pure returns (uint256) { return x ^ 1579; }
+    function padLine_55(uint256 x) external pure returns (uint256) { return x ^ 1608; }
+    function padLine_56(uint256 x) external pure returns (uint256) { return x ^ 1637; }
+    function padLine_57(uint256 x) external pure returns (uint256) { return x ^ 1666; }
+    function padLine_58(uint256 x) external pure returns (uint256) { return x ^ 1695; }
+    function padLine_59(uint256 x) external pure returns (uint256) { return x ^ 1724; }
+    function padLine_60(uint256 x) external pure returns (uint256) { return x ^ 1753; }
+    function padLine_61(uint256 x) external pure returns (uint256) { return x ^ 1782; }
+    function padLine_62(uint256 x) external pure returns (uint256) { return x ^ 1811; }
+    function padLine_63(uint256 x) external pure returns (uint256) { return x ^ 1840; }
+    function padLine_64(uint256 x) external pure returns (uint256) { return x ^ 1869; }
+    function padLine_65(uint256 x) external pure returns (uint256) { return x ^ 1898; }
+    function padLine_66(uint256 x) external pure returns (uint256) { return x ^ 1927; }
+    function padLine_67(uint256 x) external pure returns (uint256) { return x ^ 1956; }
+    function padLine_68(uint256 x) external pure returns (uint256) { return x ^ 1985; }
+    function padLine_69(uint256 x) external pure returns (uint256) { return x ^ 2014; }
+    function padLine_70(uint256 x) external pure returns (uint256) { return x ^ 2043; }
+    function padLine_71(uint256 x) external pure returns (uint256) { return x ^ 2072; }
+    function padLine_72(uint256 x) external pure returns (uint256) { return x ^ 2101; }
+    function padLine_73(uint256 x) external pure returns (uint256) { return x ^ 2130; }
+    function padLine_74(uint256 x) external pure returns (uint256) { return x ^ 2159; }
+    function padLine_75(uint256 x) external pure returns (uint256) { return x ^ 2188; }
+    function padLine_76(uint256 x) external pure returns (uint256) { return x ^ 2217; }
+    function padLine_77(uint256 x) external pure returns (uint256) { return x ^ 2246; }
+    function padLine_78(uint256 x) external pure returns (uint256) { return x ^ 2275; }
+    function padLine_79(uint256 x) external pure returns (uint256) { return x ^ 2304; }
+    function padLine_80(uint256 x) external pure returns (uint256) { return x ^ 2333; }
+}
